@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="lib/konva.js"></script>
+		<script type="text/javascript" src="lib/pieChar.js"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var stage = new Konva.Stage({
+				width:window.innerWidth,
+				height:window.innerHeight,
+				container:"box"
+			});
+			var citys = [
+			{name:"王者",color:"red",rate:0.05},
+			{name:"超凡",color:"orange",rate:0.05},
+			{name:"砖石",color:"gold",rate:0.1},
+			{name:"黄金",color:"yellow",rate:0.1},
+			{name:"白银",color:"#aaa",rate:0.3},
+			{name:"青铜",color:"green",rate:0.4}
+			];
+			var layer = new Konva.Layer();
+			stage.add(layer);
+			var pieChar = new PieChar({
+				x : window.innerWidth/2,
+				y : window.innerHeight/2,
+				innerRadius : 180,
+				outerRadius : 200,
+				strokeColor : "#999",
+				fillColor : "#eee",
+				lineWidth : 2,
+				date : citys
+			});
+			pieChar.render(layer);
+			layer.draw();
+			stage.on("contentClick",function(){
+				pieChar.update();
+			});
+		</script>
+	</body>
+</html>
